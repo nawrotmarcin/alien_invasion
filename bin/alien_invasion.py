@@ -1,30 +1,27 @@
-import sys
-
 import pygame
+
+from settings import Settings
+from ship import Ship
+from background_image import BackGround
+import game_functions as gf
 
 
 def run_game():
 	# Inicjalizacja gry i utworzenie obiektu ekranu.
 	pygame.init()
-	screen = pygame.display.set_mode((1200, 800))
+	ai_settings = Settings()
+	screen = pygame.display.set_mode(
+		(ai_settings.screen_width, ai_settings.screen_height))
 	pygame.display.set_caption("Inwazja obcych")
 
-	# Zdefiniowanie koloru tła.
-	bg_color = (5, 0, 85)
+	# Utworzenie statku kosmiczego.
+	ship = Ship(screen)
+	bg = BackGround(screen)
 
 	# Rozpoczęcie pętli głównej gry
 	while True:
-
-		# Oczekiwanie na naciśnięcie klawisza lub przycisku myszy.
-		for event in pygame.event.get():
-			if event.type == pygame.QUIT:
-				sys.exit()
-
-		# Odświeżenie ekranu w trakcie każdej iteracji pętli.
-		screen.fill(bg_color)
-
-		# Wyśwetlanie ostatnio zmodyfikowanego ekranu.
-		pygame.display.flip()
+		gf.check_events(ship)
+		gf.update_screen(ai_settings, screen, ship, bg)
 
 
 run_game()
