@@ -9,6 +9,9 @@ def run_game():
 	screen = pygame.display.set_mode((1200, 800))
 	pygame.display.set_caption("Inwazja obcych")
 
+	# Zdefiniowanie koloru tła.
+	bg_color = (5, 0, 85)
+
 	# Rozpoczęcie pętli głównej gry
 	while True:
 
@@ -16,6 +19,9 @@ def run_game():
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				sys.exit()
+
+		# Odświeżenie ekranu w trakcie każdej iteracji pętli.
+		screen.fill(bg_color)
 
 		# Wyśwetlanie ostatnio zmodyfikowanego ekranu.
 		pygame.display.flip()
